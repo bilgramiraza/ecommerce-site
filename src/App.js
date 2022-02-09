@@ -1,10 +1,9 @@
 import './App.css';
+import RouterHub from './components/RouterHub';
 
 function App() {
   return (
-    <div>
-      <h1>Test</h1>
-    </div>
+    <RouterHub />
   );
 }
 
