@@ -1,10 +1,12 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Home from '../pages/Home';
 import Catalogue from '../pages/Catalogue';
 import About from '../pages/About';
+import Product from '../pages/Product';
+import NotFound from '../pages/NotFound';
 
 const RouterHub = () => {
   return (
@@ -12,8 +14,12 @@ const RouterHub = () => {
     <Header />
     <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='Products' element={<Catalogue />} />
-        <Route path='About' element={<About />} />
+        <Route path='products' element={<Products />}>
+            <Route path='' element={<Catalogue />} />
+            <Route path=':product' element={<Product />} />
+        </Route>
+        <Route path='about' element={<About />} />
+        <Route path='*' element={<NotFound />} />
     </Routes>
     <Footer />
   </BrowserRouter>
@@ -21,3 +27,9 @@ const RouterHub = () => {
 }
 
 export default RouterHub;
+
+function Products() {
+    return(
+        <Outlet />
+    );
+}
