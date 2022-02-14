@@ -5,32 +5,45 @@ import RouterHub from './components/RouterHub';
 function App() {
   const [showCart, setShowCart]=useState(false);
   const [cart, setCart] = useState({});
-  console.log(cart);
-  const addToCart=(item)=>{
-    setCart((prevState)=>{
-      let addedItem={};
-      if(prevState[item.id])
-        addedItem ={
-          [item.id]:{
-            ...prevState[item.id],
-            count:prevState[item.id].count+1,
-          }};
-      else{
-        addedItem ={
-          [item.id]:{
+  const itemExistsInCart=(itemID)=>{
+    if(cart[itemID])
+      return true
+    else
+      return false;
+  }
+  const addToCart=(item)=>{         //Adds new items to the cart
+    setCart((prevState)=>{          
+      if(prevState[item.id])  return;
+
+      return {
+        ...prevState,
+        [item.id]:{
           itemName:item.title, 
           itemPrice:item.price, 
           itemImg:item.img, 
           count:1,
         }};
-      }
-      return {
-        ...prevState,
-        ...addedItem
-      };
     });
   };
-  const removeFromCart = (itemID)=>{
+  const removeFromCart=(itemID)=>{       //Removes items from the cart
+    setCart((prevState)=>{
+      if(!prevState[itemID])  return prevState;
+      delete prevState[itemID];
+      return prevState;
+    });
+  }
+  const addItem=(itemID)=>{         //Increases the count of the existing items in cart
+    setCart((prevState)=>{
+      if(!prevState[itemID])  return prevState;
+
+      return{
+        [itemID]:{
+          ...prevState[itemID],
+          count:prevState[itemID].count+1,
+        }};
+    });
+  }
+  const removeItem = (itemID)=>{  //Decreases the count of the existing items in cart
     setCart((prevState)=>{
       if(!prevState[itemID])  return prevState;
       
@@ -41,19 +54,18 @@ function App() {
                   count:prevState[itemID].count-1,
                   }
                 };
-      else{
-        delete prevState[itemID];
-        return prevState;
-      }
+      else return prevState;
     });
-
   };
   return (
     <RouterHub cart={cart} 
-               addToCart={addToCart} 
                cartDisplay={showCart} 
-               toggleCart={setShowCart}
-               removeFromCart={removeFromCart}/>
+               addToCart={addToCart}
+               removeFromCart={removeFromCart}
+               incrementItem={addItem}
+               decrementItem={removeItem}
+               itemExists={itemExistsInCart}
+               toggleCart={setShowCart}/>
   );
 }
 
