@@ -2,7 +2,6 @@ import React from 'react'
 import CartPanel from "./CartPanel";
 
 const CartModal = (props) => {
-	console.log(props);
 	return (
 		<>
 			<p data-bs-toggle="modal" data-bs-target="#cartModal">
@@ -11,7 +10,8 @@ const CartModal = (props) => {
 			<CartPanel cart={props.cart}
 						incrementItem={props.increaseItemCount}
 						decrementItem={props.decreaseItemCount}
-						removeFromCart={props.removeFromCart}/>
+						removeFromCart={props.removeFromCart}
+						resetCart={props.resetCart}/>
 		</>
 	)
 }

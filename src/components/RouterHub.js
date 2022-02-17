@@ -9,13 +9,13 @@ import Product from '../pages/Product';
 import NotFound from '../pages/NotFound';
 
 const RouterHub = (props) => {
-  console.log(props);
   return (
     <BrowserRouter>
     <Header cart={props.cart}
             increaseItemCount={props.increaseItemCount}
             decreaseItemCount={props.decreaseItemCount}
-            removeFromCart={props.removeFromCart}/>
+            removeFromCart={props.removeFromCart}
+			resetCart={props.clearCart}/>
     <Routes>
         <Route path='/' element={<Home />} />
         <Route path='products' element={<Products />}>

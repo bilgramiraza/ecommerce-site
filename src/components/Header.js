@@ -10,7 +10,8 @@ const Header = (props) => {
 		<CartModal cart={props.cart}
 					increaseItemCount={props.increaseItemCount}
 					decreaseItemCount={props.decreaseItemCount}
-					removeFromCart={props.removeFromCart}/>
+					removeFromCart={props.removeFromCart}
+					resetCart={props.resetCart}/>
 		</header>
   	);
 }

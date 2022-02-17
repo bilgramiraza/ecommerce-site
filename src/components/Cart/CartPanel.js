@@ -17,7 +17,7 @@ const CartPanel = (props) => {
                               removeFromCart={props.removeFromCart}/>
                 </div>
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Keep Shopping</button>
+                    <button type="button" className="btn btn-danger" onClick={props.resetCart}>Clear Cart</button>
                     <button type="button" className="btn btn-primary">Checkout</button>
                 </div>
             </div>

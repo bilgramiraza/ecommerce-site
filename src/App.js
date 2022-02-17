@@ -58,13 +58,17 @@ function App() {
 			else return prevState;
 		});
 	};
+	const clearCart=()=>{
+		setCart({});
+	};
 	return (
 		<RouterHub  cart={cart}
 								addToCart={addToCart}
 								removeFromCart={removeFromCart}
 								increaseItemCount={addItem}
 								decreaseItemCount={removeItem}
-								itemExists={itemExistsInCart}/>
+								itemExists={itemExistsInCart}
+								clearCart={clearCart}/>
 	);
 }
 
