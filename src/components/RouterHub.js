@@ -7,17 +7,19 @@ import Catalogue from '../pages/Catalogue';
 import About from '../pages/About';
 import Product from '../pages/Product';
 import NotFound from '../pages/NotFound';
-import Cart from './Cart';
 
 const RouterHub = (props) => {
+  console.log(props);
   return (
     <BrowserRouter>
-    <Cart cartDisplay={props.cartDisplay}/>
-    <Header cart={props.cart} toggleCart={props.toggleCart}/>
+    <Header cart={props.cart}
+            increaseItemCount={props.increaseItemCount}
+            decreaseItemCount={props.decreaseItemCount}
+            removeFromCart={props.removeFromCart}/>
     <Routes>
         <Route path='/' element={<Home />} />
         <Route path='products' element={<Products />}>
-            <Route path='' element={<Catalogue addToCart={props.addToCart} removeFromCart={props.removeFromCart}/>} />
+            <Route path='' element={<Catalogue addToCart={props.addToCart} itemExists={props.itemExists}/>} />
             <Route path=':product' element={<Product />} />
         </Route>
         <Route path='about' element={<About />} />

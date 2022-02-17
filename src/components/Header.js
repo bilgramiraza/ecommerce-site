@@ -1,14 +1,18 @@
 import React from 'react'
+import CartModal from './Cart/CartModal';
 import Navbar from './Navbar'
 
-const Header = () => {
+const Header = (props) => {
   return (
-      <header>
-        <h2>Header</h2>
-      <Navbar />
-
-      </header>
-  );
+		<header>
+			<h2>Header</h2>
+		<Navbar />
+		<CartModal cart={props.cart}
+					increaseItemCount={props.increaseItemCount}
+					decreaseItemCount={props.decreaseItemCount}
+					removeFromCart={props.removeFromCart}/>
+		</header>
+  	);
 }
 
 export default Header;
